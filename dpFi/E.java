@@ -1,6 +1,6 @@
 package com.example.myPackage;
 /*
-This is CSES Set 5 Question Removing Elements
+ 
  */
 
 
