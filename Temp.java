@@ -38,6 +38,16 @@ public class Temp {
         long nextLong() {
             return Long.parseLong(next());
         }
+        int  gcd(int a,int b)
+        {
+            while (b > 0)
+            {
+                int  temp = b;
+                b = a % b;
+                a = temp;
+            }
+            return a;
+        }
     }
 }
 
