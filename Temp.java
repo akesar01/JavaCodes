@@ -6,8 +6,13 @@ import java.util.StringTokenizer;
 public class Temp {
     private static FastScanner fs = new FastScanner();
     public static void main(String[] args) {
-
-
+        
+        int t = fs.nextInt();
+        while(t-->0)
+        {
+            
+            
+        }
     }
 
 
