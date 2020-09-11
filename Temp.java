@@ -53,6 +53,34 @@ public class Temp {
             }
             return a;
         }
+  private int upper(int arr[],int key){
+    int low = 0;
+    int high = arr.length-1;
+    while(low < high){
+        int mid = low + (high - low+1)/2;
+        if(arr[mid] <= key){
+            low = mid;
+        }
+        else{
+            high = mid-1;
+        }
+    }
+    return low;
+}
+        public static int lower(int arr[],int key){
+    int low = 0;
+    int high = arr.length-1;
+    while(low < high){
+        int mid = low + (high - low)/2;
+        if(arr[mid] >= key){
+            high = mid;
+        }
+        else{
+            low = mid+1;
+        }
+    }
+    return low;
+}
     }
 }
 
