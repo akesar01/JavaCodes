@@ -68,7 +68,7 @@ public class Temp {
             }
             return low;
         }
-        public static int lower(int arr[],int key){
+        public int lower(int arr[],int key){
             int low = 0;
             int high = arr.length-1;
             while(low < high){
