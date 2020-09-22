@@ -82,5 +82,15 @@ public class Temp {
             }
             return low;
         }
+        public String nextLine() {
+            if (st == null || !st.hasMoreTokens()) {
+                try {
+                    return br.readLine();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            return st.nextToken("\n");
+        }
     }
 }
