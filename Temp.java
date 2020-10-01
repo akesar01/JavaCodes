@@ -3,9 +3,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
+import java.io.PrintWriter;
 
 public class Temp {
     private static FastScanner fs = new FastScanner();
+    private PrintWriter out=new PrintWriter(System.out);
+    // use out.println() 
     public static void main(String[] args) {
 
         int t = fs.nextInt();
