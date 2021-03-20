@@ -1,0 +1,5 @@
+{
+"target": "terminus_exec",
+"cancel": "terminus_cancel_build",
+"shell_cmd": "javac $file && java $file_base_name"
+}
