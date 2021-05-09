@@ -57,7 +57,7 @@ public class Temp {
             }
             return a;
         }
-        private int upper(int arr[],int key){
+        private int lower_bound(int arr[],int key){
             int low = 0;
             int high = arr.length-1;
             while(low < high){
@@ -71,7 +71,7 @@ public class Temp {
             }
             return low;
         }
-        public int lower(int arr[],int key){
+        public int upper_bound(int arr[],int key){
             int low = 0;
             int high = arr.length-1;
             while(low < high){
