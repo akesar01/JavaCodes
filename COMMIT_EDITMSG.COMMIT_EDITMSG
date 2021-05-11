@@ -1,0 +1,14 @@
+Done
+
+# --------------
+# Please enter the commit message for your changes. Everything below
+# this paragraph is ignored, and an empty message aborts the commit.
+# Just close the window to accept your message.
+diff --git a/Readme.md b/Readme.md
+index 76be377..a1b85e8 100644
+--- a/Readme.md
++++ b/Readme.md
+@@ -1 +1,2 @@
+ # Good Morning EveryBody !
++# How are you doing
+\ No newline at end of file
