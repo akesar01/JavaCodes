@@ -57,34 +57,30 @@ public class Temp {
             }
             return a;
         }
-        private int lower_bound(int arr[],int key){
-            int low = 0;
-            int high = arr.length-1;
-            while(low < high){
-                int mid = low + (high - low+1)/2;
-                if(arr[mid] <= key){
-                    low = mid;
-                }
-                else{
-                    high = mid-1;
-                }
-            }
-            return low;
+        public static int lower_bound(int[] arr, int begin, int end, int tar) {
+        while(begin < end) {
+            int mid = begin + (end - begin) / 2;
+            // When the element is less than the mid tar
+            if(arr[mid] < tar)
+                         // begin to mid + 1, arr [begin] value is less than or equal tar
+                begin = mid + 1; 
+                         // When the mid tar element when greater than or equal
+            else if(arr[mid] >= tar)
+                end = mid;
         }
-        public int upper_bound(int arr[],int key){
-            int low = 0;
-            int high = arr.length-1;
-            while(low < high){
-                int mid = low + (high - low)/2;
-                if(arr[mid] >= key){
-                    high = mid;
-                }
-                else{
-                    low = mid+1;
-                }
-            }
-            return low;
+        return begin;
+    }
+       public static int upper_bound(int[] arr, int begin, int end, int tar) {
+        while(begin < end) {
+            int mid = begin + (end - begin) / 2;
+            if(arr[mid] <= tar) 
+                begin = mid + 1;
+            else if(arr[mid] < tar)
+                end = mid;
         }
+        return begin;
+    }
+
         public String nextLine() {
             if (st == null || !st.hasMoreTokens()) {
                 try {
