@@ -1,0 +1,53 @@
+// { Driver Code Starts
+//Initial Template for Java
+// trie 
+// https://leetcode.com/problems/longest-word-in-dictionary/
+import java.util.*;
+import java.io.*;
+import java.lang.*;
+
+class cf2 {
+    private static int nxt[][];
+    private static boolean is_terminal[];
+    public String longestWord(String[] words) {
+        nxt= new int [30_001][26];
+        
+        is_terminal = new boolean[30_001];
+        int N =0;
+        for(String s:words)
+        {
+            int node =0;
+            for(int i=0;i<s.length();i++)
+            {
+                int index = s.charAt(i)-'a';
+                if(nxt[node][index]==0)
+                {
+                    nxt[node][index] = ++N;
+                }
+                
+                node = nxt[node][index];
+            }
+            is_terminal[node] = true;
+        }
+        ans = "";
+        dfs(0,"");
+        return ans;
+    }
+    private static String ans ;
+    private static void dfs(int node,String so_far)
+    {
+        if(ans.length()<so_far.length()) ans = so_far;
+        
+        for(int i=0;i<26;i++)
+        {
+            int tmp = nxt[node][i];
+            if(tmp !=0 && is_terminal[tmp])
+            {
+                dfs(tmp,so_far+(char)('a'+i));
+            }
+        }
+    
+    }
+   
+    
+}
