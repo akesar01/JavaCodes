@@ -1,0 +1,51 @@
+// https://leetcode.com/problems/longest-word-in-dictionary-through-deleting/
+// /implemented using Trie by giving the TLE
+class Solution {
+    private static int nxt[][];
+    private static boolean is_terminal[];
+    public String findLongestWord(String str, List<String> d) {
+        nxt = new int [200_002][26];
+        // System.out.println(str.length());
+        is_terminal = new boolean [200_002];
+        int N=0;
+        
+        for(String s:d)
+        {
+            int node =0;
+            for(int i=0;i<s.length();i++)
+            {
+                int tmp = nxt[node][s.charAt(i)-'a'];
+                if(tmp==0)
+                {
+                    nxt[node][s.charAt(i)-'a'] = ++N;    
+                }
+                node = nxt[node][s.charAt(i)-'a'];
+            }
+            is_terminal[node] = true;
+        }
+        ans ="";
+        search(0,str,0,"");
+        return ans;
+        
+    }
+    private static String ans;
+    private static void search(int node,String s,int start,String so_far)
+    {
+        if((ans.length()<so_far.length() || (ans.length()==so_far.length() && ans.compareTo(so_far)>0 ) ) && is_terminal[node] )
+           {
+               ans = so_far;
+           }
+        
+        for(int i=start;i<s.length();i++)
+        {
+            int index = s.charAt(i)-'a';
+            
+            if(nxt[node][index] != 0)
+            {
+                search(nxt[node][index],s,i+1,so_far+s.charAt(i));
+                // System.out.println("Hello");
+            }
+            
+        }
+    }
+}
