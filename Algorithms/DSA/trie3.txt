@@ -1,0 +1,63 @@
+// Trie
+// https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/
+// Did using Trie Not best approach
+class Solution {
+    public int findMaximumXOR(int[] nums) {
+        // Build the Trie 
+        
+        int nxt[][] = new int [400_000][2];
+        int N =0;
+        for(int num:nums)
+        {
+            int node =0;
+            for(int i=30;i>=0;i--)
+            {
+                int val = ((num>>i)&(1));
+                int tmp = nxt[node][val];
+                if(tmp==0)
+                {
+                    nxt[node][val] = ++N;
+                }
+                node = nxt[node][val];
+            }
+            
+           
+        }
+        // Finding the xor
+        int ans =0;
+        for(int num:nums)
+        {
+            int node =0;
+            int y=0;
+            for(int i=30;i>=0;i--)
+            {
+                int val = ((num>>i)&(1));
+                if(val==1)
+                {
+                    if(nxt[node][0]==0)
+                    {
+                        node = nxt[node][1];
+                        y+=(1<<i);
+                    }
+                    else node = nxt[node][0];
+                }
+                if(val==0)
+                {
+                    if(nxt[node][1]==0)
+                    {
+                        node = nxt[node][0];
+                    }
+                    else
+                    {
+                        
+                        node = nxt[node][1];
+                        
+                        y+=(1<<i);
+                    }
+                }
+            }
+            ans = Math.max(ans,y^num);
+        }
+        return ans;
+    }
+}
