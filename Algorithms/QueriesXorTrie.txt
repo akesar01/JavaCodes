@@ -1,0 +1,93 @@
+/*This question is an extension of the following question on XOR.
+
+Maximum XOR of two numbers in an array
+
+The above question can be solved using trie in O(N) time complexity .
+
+Now coming to this question, the key point to note is there is an extra parameter you need to consider while fetching the query and that is mi.
+
+To prevent creation of a seperate trie for every query, what we are going to do is that :
+
+Take a temporary array temp[][3] and copy the queries array into it. The third column of temp array will hold the position of the respective query in the original list. (Since we need to note the order of the queries).
+
+Next we sort the temp array on basis of its second parameter i.e, mi.
+
+We sort the original nums array and initailize a variable (index) to 0.
+
+Now we loop through the temp array .
+
+At every iteration we add the elements in the trie which are <= mi for that query.
+
+This ensures at every point all the elements present in the trie is <= mi.
+
+The third parameter in temp array helps us to map the answer for every query to its correct position.
+
+Rest of the problem is same as Maximum XOR of two elements in an array.
+
+Time Complexity : O (N log(N) + K log(K) )
+where N is the number of elements in the nums array and K is the total number of queries.
+Here we need to note that every element is added to the trie atmost once. For adding each element in the trie constant time is required (c = 32). The log(n) factor gets added because we are sorting both the nums array and queries array.
+*/
+// Max https://leetcode.com/problems/maximum-xor-with-an-element-from-array/
+class TrieNode {
+        TrieNode nums[] = new TrieNode[2];
+        int prefixValue;
+    }
+
+    public int[] maximizeXor(int[] nums, int[][] queries) {
+        int queriesLength = queries.length;
+        int[] ans = new int[queriesLength];
+        int[][] temp = new int[queriesLength][3];
+        for (int i = 0; i < queriesLength; i++) {
+            temp[i][0] = queries[i][0];
+            temp[i][1] = queries[i][1];
+            temp[i][2] = i;
+        }
+
+        Arrays.sort(temp, (a, b) -> {
+            return a[1] - b[1];
+        });
+        int index = 0;
+        Arrays.sort(nums);
+        TrieNode root = new TrieNode();
+
+        for (int query[] : temp) {
+            while (index < nums.length && nums[index] <= query[1]) {
+                insert(root, nums[index]);
+                index++;
+            }
+            int tempAns = -1;
+            if (index != 0) {
+                tempAns = search(root, query[0]);
+            }
+            ans[query[2]] = tempAns;
+        }
+
+        return ans;
+    }
+
+    public void insert(TrieNode root, int n) {
+        TrieNode node = root;
+        for (int i = 31; i >= 0; i--) {
+            int bit = (n >> i) & 1;
+            if (node.nums[bit] == null) {
+                node.nums[bit] = new TrieNode();
+            }
+            node = node.nums[bit];
+        }
+        node.prefixValue = n;
+    }
+
+    public int search(TrieNode root, int n) {
+        TrieNode node = root;
+        for (int i = 31; i >= 0; i--) {
+            int bit = (n >> i) & 1;
+            int requiredBit = bit == 1 ? 0 : 1;
+            if (node.nums[requiredBit] != null) {
+                node = node.nums[requiredBit];
+            } else {
+                node = node.nums[bit];
+            }
+        }
+        return node.prefixValue ^ n;
+    }
