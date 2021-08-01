@@ -1,1 +1,4 @@
-
+1-08-2021
+ Using Moore’s Voting Algorithm
+ Finding the element which  has frequency more than the size/2;
+ 
