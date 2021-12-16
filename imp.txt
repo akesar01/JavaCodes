@@ -1,3 +1,10 @@
+
 hostname : in-akesar-w1
 Username : adprod\akesar
 Password: qwerty@123
+// New Mail
+
+ankitkesar001@gmail.com
+qwerty@123
+
+//
