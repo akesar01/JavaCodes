@@ -1,7 +1,7 @@
 
 hostname : in-akesar-w1
 Username : adprod\akesar
-Password: Iitdelhi@19
+Password: Sushma@19
 // New Mail
 
 ankitkesar001@gmail.com
@@ -12,3 +12,6 @@ qwerty@123
 HDFC netbanking
 
 pass:-  Virat@19
+
+Oracle Bruce Wyane Account
+pass :- Password@bmc19
